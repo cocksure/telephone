@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Моя таблица</title>
+    <style>
+        /* Стили для таблицы */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        th, td {
+            border: 2px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: lightblue;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+<h1>Моя таблица</h1>
+{{ forloop.counter }}
+<table class="table table-sm table-info mx-1 my-1" id="table1">
+    <thead class="thead">
+    <tr>
+        <th style="width: 5%;">№</th>
+        <th style="width: 9.5%;">1</th>
+        <th style="width: 9.5%;">2</th>
+        <th style="width: 9.5%;">3</th>
+        <th style="width: 9.5%;">4</th>
+        <th style="width: 9.5%;">5</th>
+        <th style="width: 9.5%;">6</th>
+        <th style="width: 9.5%;">7</th>
+        <th style="width: 9.5%;">8</th>
+        <th style="width: 9.5%;">9</th>
+        <th style="width: 9.5%;">10</th>
+    </tr>
+    </thead>
+    <tbody class="tbody">
+    {% for row in table %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ row.col1 }}</td>
+                <td>{{ row.col2 }}</td>
+                <td>{{ row.col3 }}</td>
+                <td>{{ row.col4 }}</td>
+                <td>{{ row.col5 }}</td>
+                <td>{{ row.col6 }}</td>
+                <td>{{ row.col7 }}</td>
+                <td>{{ row.col8 }}</td>
+                <td>{{ row.col9 }}</td>
+                <td>{{ row.col10 }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

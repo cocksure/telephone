@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Table</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -16,40 +18,77 @@
             border-radius: 10px;
             text-align: center;
         }
+
+        .center-text {
+            text-align: center;
+        }
+
+         td:hover {
+            font-size: 25px;
+            font-weight: bold;
+            transition: 0.5s all;
+        }
+        td:focus {
+            font-size: 25px;
+            font-weight: bold;
+            transition: 0.5s all;
+        }
     </style>
 </head>
 <body>
 
 
-{% for table in tables %}
 
-    <table class="table table-info mx-2 my-2">
+{% for table in tables %}
+   <div class="center-text">
+        <span id="counter{{ forloop.counter }}" style="display: none;">{{ forloop.counter }}</span>
+    </div>
+    <table class="table table-sm table-info mx-2 my-2" id="table{{ forloop.counter }}">
         <thead class="thead">
-        <th style="width: 10%;">1</th>
-        <th style="width: 10%;">2</th>
-        <th style="width: 10%;">3</th>
-        <th style="width: 10%;">4</th>
-        <th style="width: 10%;">5</th>
-        <th style="width: 10%;">6</th>
-        <th style="width: 10%;">7</th>
-        <th style="width: 10%;">8</th>
-        <th style="width: 10%;">9</th>
-        <th style="width: 10%;">10</th>
+            <th style="width: 10%;">1</th>
+            <th style="width: 10%;">2</th>
+            <th style="width: 10%;">3</th>
+            <th style="width: 10%;">4</th>
+            <th style="width: 10%;">5</th>
+            <th style="width: 10%;">6</th>
+            <th style="width: 10%;">7</th>
+            <th style="width: 10%;">8</th>
+            <th style="width: 10%;">9</th>
+            <th style="width: 10%;">10</th>
         </thead>
         <tbody class="tbody">
-        <td>{{ table.col1 }}</td>
-        <td>{{ table.col2 }}</td>
-        <td>{{ table.col3 }}</td>
-        <td>{{ table.col4 }}</td>
-        <td>{{ table.col5 }}</td>
-        <td>{{ table.col6 }}</td>
-        <td>{{ table.col7 }}</td>
-        <td>{{ table.col8 }}</td>
-        <td>{{ table.col9 }}</td>
-        <td>{{ table.col10 }}</td>
+            <td>{{ table.col1 }}</td>
+            <td>{{ table.col2 }}</td>
+            <td>{{ table.col3 }}</td>
+            <td>{{ table.col4 }}</td>
+            <td>{{ table.col5 }}</td>
+            <td>{{ table.col6 }}</td>
+            <td>{{ table.col7 }}</td>
+            <td>{{ table.col8 }}</td>
+            <td>{{ table.col9 }}</td>
+            <td>{{ table.col10 }}</td>
         </tbody>
     </table>
+
+
+    <script>
+        const table{{ forloop.counter }} = document.querySelector('#table{{ forloop.counter }}');
+        const counter{{ forloop.counter }} = document.querySelector('#counter{{ forloop.counter }}');
+
+        table{{ forloop.counter }}.addEventListener('click', () => {
+            const counters = document.querySelectorAll('[id^="counter"]');
+            counters.forEach((counter) => {
+                counter.style.display = 'none';
+            });
+            counter{{ forloop.counter }}.style.display = 'inline-block';
+        });
+    </script>
 {% endfor %}
+
+
+
+
+
 
 
 
@@ -57,5 +96,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+{% if tables %}
+    <a href="{% url 'generate_pdf' %}" class="btn btn-primary" target="_blank">Скачать PDF</a>
+{% endif %}
 </body>
 </html>

@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 class Department(models.Model):
     name = models.CharField(max_length=100)
 
+    class Meta:
+        verbose_name = "Bo'lim"
+        verbose_name_plural = "Bo'limlar"
+
     def __str__(self):
         return self.name
 
@@ -21,6 +25,10 @@ class MyTable(models.Model):
     col8 = models.CharField(max_length=255, blank=True)
     col9 = models.CharField(max_length=255, blank=True)
     col10 = models.CharField(max_length=255, blank=True)
+
+    class Meta:
+        verbose_name = 'Jadval'
+        verbose_name_plural = 'Jadvallar'
 
     def __str__(self):
         return f"Row: {self.pk}"
